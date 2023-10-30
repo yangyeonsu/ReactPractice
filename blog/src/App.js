@@ -17,7 +17,21 @@ function App() {
         <h4>연숭이의 블로그</h4>
       </div>
 
-      <button>가나다순정렬</button>
+      <button onClick={ ()=>{ 
+        let copy = [...글제목];
+        copy.sort(function(a, b) {
+          return a.localeCompare(b);
+        });
+        글제목변경(copy);
+      } }>가나다순정렬</button>
+      
+      <button onClick={ ()=>{ 
+        let copy = [...글제목];
+        copy.sort(function(a, b) {
+          return b.localeCompare(a);
+        });
+        글제목변경(copy);
+      } }>다나가순정렬</button>
 
       <div className="list">
         <h4>{ 글제목[0] }<span onClick={ () => { 좋아요변경(좋아요+1) }}> 👍 </span> {좋아요} </h4>
@@ -35,9 +49,21 @@ function App() {
         <h4>{ 글제목[2] }</h4>
         <p>10월 27일 발행</p>
       </div>
+
+      <Modal></Modal>
       
     </div>
   );
+}
+
+function Modal() {
+  return (
+    <div className='modal'>
+      <h4>제목</h4>
+      <p>날짜</p>
+      <p>상세내용</p>
+    </div>
+  )
 }
 
 export default App;
